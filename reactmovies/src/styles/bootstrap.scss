@@ -1,9 +1,9 @@
 @import "./variables.scss";
-// цветовая палитра от синего
+// color palette from default blue
 $theme-colors: (
   "primary": $color-primary,
 );
-// стили bootstrap
+// bootstrap
 @import "~bootstrap/scss/bootstrap";
 
 .btn-light {
@@ -20,7 +20,7 @@ $theme-colors: (
     color: $color-primary;
   }
 
-  // из bootstrap копипаст главное active
+  // from bootstrap (main is active)
   &:not(:disabled):not(.disabled):active {
     background: rgba(85, 85, 85, 0.9);
     color: $color-primary;

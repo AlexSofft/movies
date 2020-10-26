@@ -1,8 +1,8 @@
-// импорт на главный scss файл
+// import onto main scss file
 @import "styles/bootstrap.scss";
 @import "styles/variables.scss";
 
-//вся html страница
+//all html page
 body {
   background-color: $color-background-page;
   color: $color-white;
