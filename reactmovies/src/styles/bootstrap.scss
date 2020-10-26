@@ -1,0 +1,28 @@
+@import "./variables.scss";
+// цветовая палитра от синего
+$theme-colors: (
+  "primary": $color-primary,
+);
+// стили bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.btn-light {
+  background: rgba(85, 85, 85, 0.85);
+  border: none;
+  color: $color-primary;
+
+  &:hover {
+    background: rgba(85, 85, 85, 0.9);
+  }
+
+  &:focus {
+    background: rgba(85, 85, 85, 0.9);
+    color: $color-primary;
+  }
+
+  // из bootstrap копипаст главное active
+  &:not(:disabled):not(.disabled):active {
+    background: rgba(85, 85, 85, 0.9);
+    color: $color-primary;
+  }
+}

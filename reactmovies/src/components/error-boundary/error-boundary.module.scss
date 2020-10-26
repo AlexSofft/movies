@@ -1,0 +1,36 @@
+@import "styles/variables.scss";
+
+.container {
+  height: 100vh;
+  padding: 16px 48px;
+  background-color: $color-background;
+}
+
+.logo {
+  color: $color-primary;
+  font-size: 24px;
+  text-shadow: 1px 1px black;
+  z-index: 2;
+
+  strong {
+    font-weight: 900;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 128px;
+  font-size: 32px;
+}
+
+.error {
+  font-size: 128px;
+}
+
+button.button {
+  border: 1px solid $color-primary;
+  text-transform: uppercase;
+}

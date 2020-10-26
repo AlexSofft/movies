@@ -1,0 +1,63 @@
+@import "styles/variables.scss";
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  font-size: 16px;
+  color: $color-white;
+  border-bottom: 3px solid $color-border;
+}
+
+.genres {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.genre {
+  position: relative;
+  padding: 0 8px;
+  cursor: pointer;
+
+  &.active {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      bottom: -18px;
+      left: 0;
+      border-bottom: 3px solid $color-primary;
+    }
+  }
+}
+
+.genre:hover {
+  //various stuff: icons etc
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    bottom: -18px;
+    left: 0;
+    border-bottom: 3px solid rgba($color-primary, 0.7);
+  }
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.6);
+}
+
+.dropdown {
+  min-width: 180px;
+  margin-left: 16px;
+}
+
+.dropdownToggle {
+  width: 100%;
+  text-transform: uppercase;
+}

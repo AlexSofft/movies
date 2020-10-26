@@ -1,0 +1,67 @@
+@import "styles/variables.scss";
+
+.container {
+  position: relative;
+  flex: 0 1 30%;
+  margin: 16px 32px 0 0;
+}
+
+.poster {
+  width: 100%
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  color: rgba($color-white, 0.8);
+}
+
+.title {
+  font-size: 18px;
+}
+
+.releaseDate {
+  padding: 0 4px;
+  border: 1px solid rgba($color-white, 0.6);
+  border-radius: 4px;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  color: rgba($color-white, 0.6);
+}
+
+.dropdown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  button {
+    width: 40px;
+    height: 40px;
+    background-color: $color-background;
+    border: none;
+    border-radius: 50%;
+
+    &::after {
+      border: none;
+    }
+  }
+
+  .dropdownMenu {
+    background-color: $color-background;
+  }
+  
+  .dropdownItem {
+    color: $color-white;
+  
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+}

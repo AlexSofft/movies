@@ -1,0 +1,19 @@
+@import "styles/variables.scss";
+
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  color: $color-primary;
+  font-size: 24px;
+  text-shadow: 1px 1px black;
+  z-index: 2;
+
+  strong {
+    font-weight: 900;
+  }
+}

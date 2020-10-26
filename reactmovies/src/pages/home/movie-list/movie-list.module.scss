@@ -1,0 +1,20 @@
+@import "styles/variables.scss";
+
+.container {
+  margin-top: 8px;
+  padding: 16px 32px 64px;
+  background-color: $color-background;
+}
+
+.content {
+  margin-top: 8px;
+}
+
+.count {
+  font-size: 20px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
