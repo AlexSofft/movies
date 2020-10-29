@@ -22,6 +22,7 @@ function Filters(props) {
         {filterOptions.map((item) => (
           <div
             key={item.key}
+            //underline
             className={cn(styles.genre, {
               // dynamic property applyes if [styles.active]: filter.key === item.key, 
               [styles.active]: filter.key === item.key,
