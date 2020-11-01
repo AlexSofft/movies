@@ -1,28 +1,87 @@
+
 @import "./variables.scss";
-// color palette from default blue
+
 $theme-colors: (
-  "primary": $color-primary,
+  "primary": $color-primary
 );
-// bootstrap
+
 @import "~bootstrap/scss/bootstrap";
 
+// Buttons
 .btn-light {
   background: rgba(85, 85, 85, 0.85);
   border: none;
-  color: $color-primary;
+  color:  $color-primary;
 
   &:hover {
-    background: rgba(85, 85, 85, 0.9);
+    background: rgba(85, 85, 85, 0.90);
   }
 
   &:focus {
-    background: rgba(85, 85, 85, 0.9);
-    color: $color-primary;
+    background: rgba(85, 85, 85, 0.90);
+    color:  $color-primary;
   }
 
-  // from bootstrap (main is active)
   &:not(:disabled):not(.disabled):active {
-    background: rgba(85, 85, 85, 0.9);
-    color: $color-primary;
+    background: rgba(85, 85, 85, 0.90);
+    color:  $color-primary;
+  }
+}
+
+.btn-tertiary {
+  background: transparent;
+  border: 2px solid $color-primary;
+  color:  $color-primary;
+
+  &:hover {
+    background: rgba(85, 85, 85, 0.90);
+  }
+
+  &:focus {
+    background: rgba(85, 85, 85, 0.90);
+    color:  $color-primary;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    background: rgba(85, 85, 85, 0.90);
+    color:  $color-primary;
+  }
+}
+
+// Modal
+.modal-dialog {
+  .modal-content {
+    background-color: $color-background;
+  }
+
+  .modal-header {
+    padding: 16px 32px;
+    border-bottom: none;
+    text-transform: uppercase;
+
+    button.close {
+      padding: 4px 0;
+      color: $color-white;
+      font-size: 32px;
+    }
+  }
+
+  .modal-body {
+    padding: 16px 36px;
+  }
+}
+
+// Form-control
+.form-control {
+  height: 48px;
+  background: rgba(35, 35, 35, 0.8);
+  border: none;
+  color: $color-white;
+
+  &:focus {
+    background-color: rgba(35, 35, 35, 0.8);
+    border: none;
+    color: $color-white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
   }
 }

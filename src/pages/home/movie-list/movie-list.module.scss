@@ -16,6 +16,18 @@
 
 .list {
   display: flex;
-  //miltiline
   flex-wrap: wrap;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.text {
+  color: $color-primary;
+  font-weight: 600;
+  font-size: 32px;
 }
