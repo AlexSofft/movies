@@ -59,7 +59,6 @@ function MovieItem(props) {
 
   const renderErrorComponent = () => {
     throw Error('error');
-    return <div />
   };
 
   return (

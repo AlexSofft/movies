@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { omit } from 'lodash';
 
 import ReactDatePicker from 'react-datepicker';
 import { Calendar3 } from 'react-bootstrap-icons';
@@ -19,7 +19,7 @@ function DatePicker(props) {
       selected={date}
       onChange={onChange}
       onChangeRaw={event => event.preventDefault()}
-      {..._.omit(other, ['date', 'onChange'])}
+      {...omit(other, ['date', 'onChange'])}
     />
     <Calendar3 className={styles.icon} />
     </div>

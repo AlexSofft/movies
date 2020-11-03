@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import _ from 'lodash';
 import moment from 'moment';
 
 import Button from 'react-bootstrap/Button';
@@ -15,6 +14,9 @@ import { DEFAULT_DATE_FORMAT } from 'constants/date-formats';
 import backgroundImage from 'img/movies.png';
 
 import styles from './hero-area.module.scss';
+
+const MAX = 999999;
+const MIN = 100000
 
 function HeroArea(props) {
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ function HeroArea(props) {
   const onSubmit = (data) => {
     const movie = {
       ...data,
-      id: _.random(100000, 999999),
+      id: Math.random() * (MAX - MIN) + MIN,
       release_date: moment(data.release_date).format(DEFAULT_DATE_FORMAT),
     };
 

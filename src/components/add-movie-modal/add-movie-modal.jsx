@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import moment from 'moment';
-import _ from 'lodash';
+import { pick } from 'lodash';
 
 import Modal from 'react-bootstrap/Modal';
 import FormControl from 'react-bootstrap/FormControl';
@@ -35,7 +35,7 @@ class AddMovieModal extends PureComponent {
     // if from MovieItem
     if (this.props.movie) {
       const requiredFields = ['title', 'release_date', 'poster_path', 'genres', 'overview', 'runtime']
-      const movie = _.pick(this.props.movie, requiredFields);
+      const movie = pick(this.props.movie, requiredFields);
       const data = {
         ...movie,
         release_date: moment(movie.release_date).toDate(),
