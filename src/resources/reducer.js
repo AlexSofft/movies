@@ -1,8 +1,7 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import movies from "./movies/movies.reducer";
+import movies from './movies/movies.reducer';
 
-// unite reducers
 const reducers = {
   movies,
 };

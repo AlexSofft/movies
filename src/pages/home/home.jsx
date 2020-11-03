@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import HeroArea from "./hero-area";
-import MovieList from "./movie-list";
+import HeroArea from './hero-area';
+import MovieList from './movie-list';
 
 function Home() {
   return (

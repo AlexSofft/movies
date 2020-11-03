@@ -1,37 +1,49 @@
 export const GENRES = [
   {
-    key: "all",
-    value: "All",
+    key: 'all',
+    value: 'All',
   },
   {
-    key: "documentary",
-    value: "Documentary",
+    key: 'Documentary',
+    value: 'Documentary',
   },
   {
-    key: "comedy",
-    value: "Comedy",
+    key: 'Comedy',
+    value: 'Comedy',
   },
   {
-    key: "horror",
-    value: "Horror",
+    key: 'Horror',
+    value: 'Horror',
   },
   {
-    key: "crime",
-    value: "Crime",
+    key: 'Crime',
+    value: 'Crime',
   },
+  {
+    key: 'Animation',
+    value: 'Animation',
+  },
+  {
+    key: 'Adventure',
+    value: 'Adventure',
+  },
+  {
+    key: 'Family',
+    value: 'Family',
+  }
 ];
 
 export const SORT_OPTIONS = [
   {
-    key: "release_date",
-    value: "Release date",
+    key: 'release_date',
+    value: 'Release date',
   },
   {
-    key: "rating",
-    value: "Rating",
+    key: 'vote_average',
+    value: 'Rating',
   },
   {
-    key: "genre",
-    value: "genre",
+    key: 'genres',
+    value: 'genre',
   },
 ];
