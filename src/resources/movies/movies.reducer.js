@@ -1,7 +1,8 @@
 const initialState = {
+  selected_movie: undefined,
   movie_list: [
     {
-      "id": 269149,
+      "id": "269149",
       "title": "Zootopia",
       "tagline": "Welcome to the urban jungle.",
       "vote_average": 7.7,
@@ -20,7 +21,7 @@ const initialState = {
       "runtime": 108
     },
     {
-      "id": 335984,
+      "id": "335984",
       "title": "Blade Runner 2049",
       "tagline": "There's still a page left.",
       "vote_average": 7.3,
@@ -38,10 +39,10 @@ const initialState = {
       "runtime": 163
   },
   {
-    "id": 181808,
+    "id": "181808",
       "title": "Star Wars: The Last Jedi",
       "tagline": "The Saga Continues",
-      "vote_average": 7.1,
+      "vote_average": 2,
       "vote_count": 4732,
       "release_date": "2018-12-13",
       "poster_path": "https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
@@ -56,7 +57,7 @@ const initialState = {
     "runtime": 152
 },
 {
-  "id": 245891,
+  "id": "245891",
   "title": "John Wick",
   "tagline": "Don't set him off.",
   "vote_average": 7,
@@ -73,7 +74,7 @@ const initialState = {
   "runtime": 101
 },
 {
-  "id": 122917,
+  "id": "122917",
   "title": "The Hobbit: The Battle of the Five Armies",
   "tagline": "Witness the defining chapter of the Middle-Earth saga",
   "vote_average": 7.2,
@@ -115,7 +116,10 @@ export default (state = initialState, action) => {
     case 'movies:edit': {
       const updatedList = state.movie_list.map(movie => {
         if (movie.id === action.payload.id) {
-          return action.payload.data
+          return {
+            ...movie,
+            ...action.payload.data
+          }
         }
 
         return movie;
@@ -131,6 +135,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         movie_list: state.movie_list.filter(movie => movie.id !== action.payload.id)
+      }
+    }
+
+    case 'movies:select': {
+      return {
+        ...state,
+        selected_movie: state.movie_list.find(movie => movie.id === action.payload.id)
       }
     }
 

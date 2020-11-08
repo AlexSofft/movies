@@ -16,7 +16,7 @@ function App() {
       <Provider store={store}>
         <Router>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route path="/:movieId?" component={HomePage} />
           </Switch>
         </Router>
       </Provider>

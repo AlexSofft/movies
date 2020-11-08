@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -16,6 +17,7 @@ import styles from './movie-item.module.scss';
 
 function MovieItem(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { movie } = props;
 
@@ -53,6 +55,10 @@ function MovieItem(props) {
     onCloseModal();
   }
 
+  const onSelectMovie = () => {
+    history.push(`${movie.id}`);
+  };
+
   const throwExampleError = () => {
     setShowErrorComponent(true);
   }
@@ -63,7 +69,7 @@ function MovieItem(props) {
 
   return (
     <div className={styles.container}>
-      <img className={styles.poster} src={movie.poster_path} alt={movie.title} />
+      <img className={styles.poster} src={movie.poster_path} alt={movie.title} onClick={onSelectMovie} />
       <div className={styles.description}>
         <div className={styles.title}>{movie.title}</div>
         <div className={styles.releaseDate}>{movie.release_date.split('-')[0]}</div>

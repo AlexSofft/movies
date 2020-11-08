@@ -9,3 +9,7 @@ export const editMovie = (id, data) => {
 export const deleteMovie = id => {
   return { type: 'movies:delete', payload: { id } };
 }
+
+export const selectMovie = id => {
+  return { type: 'movies:select', payload: { id } };
+}

@@ -11,7 +11,7 @@ import { GENRES, SORT_OPTIONS } from 'constants/movie-filters';
 import styles from './movie-list.module.scss';
 
 function MovieList() {  
-  const { movie_list } = useSelector(moviesSelectors.getMovies)
+  const { movie_list } = useSelector(moviesSelectors.getMovies);
   const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
   const [genre, setGenre] = useState(GENRES[0]);
 
@@ -21,7 +21,7 @@ function MovieList() {
 
   const filterMovies = (movie) => {
     if (genre.key === 'all') {
-      return true; 
+      return true;
     };
     return movie.genres.includes(genre.key);
   }
