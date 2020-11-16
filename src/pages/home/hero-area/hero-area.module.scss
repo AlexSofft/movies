@@ -33,7 +33,6 @@
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 0 60px;
 }
 
 .header {
@@ -41,6 +40,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
+  padding: 0 60px;
 }
 
 .logo {
@@ -59,7 +59,7 @@ button.addButton {
   text-transform: uppercase;
 
   &:hover {
-    color: $color-primary;
+    color:  $color-primary;
   }
 }
 
@@ -68,7 +68,7 @@ button.addButton {
 }
 
 .form {
-  padding: 0 100px;
+  padding: 0 160px;
 }
 
 .title {
@@ -89,4 +89,72 @@ button.searchButton {
   margin-left: 8px;
   padding: 8px 64px;
   text-transform: uppercase;
+}
+
+.movie {
+  display: flex;
+  max-height: 300px;
+  padding: 0 60px;
+  overflow: auto;
+}
+
+.poster {
+  max-height: 300px;
+}
+
+.details {
+  margin-left: 48px;
+}
+
+.movieTitle {
+  display: flex;
+  align-items: center;
+  font-size: 42px;
+}
+
+.text {
+  flex: 1 1;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 24px;
+  margin-left: 32px;
+  border: 1px solid rgba($color-white, 0.8);
+  border-radius: 50%;
+
+  &.good {
+    color: #66bb6a;
+  }
+}
+
+.tagline {
+  color: rgba($color-white, 0.8);
+}
+
+.numbers {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  color: $color-primary;
+  font-size: 24px;
+}
+
+.duration {
+  margin-left: 64px;
+}
+
+.overview {
+  margin-top: 24px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: $color-primary;
+  cursor: pointer;
 }
