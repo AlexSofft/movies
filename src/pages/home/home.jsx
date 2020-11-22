@@ -12,13 +12,13 @@ function Home(props) {
 
   const selectedMovie = useSelector(moviesSelectors.getSelectedMovie);
 
-  // task 5 
   const setSelectedMovie = useCallback((movieId) => {
     dispatch(moviesActions.selectMovie(movieId));
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     const { movieId } = props.match.params;
+
     setSelectedMovie(movieId)
   }, [props.match.params, setSelectedMovie]);
 

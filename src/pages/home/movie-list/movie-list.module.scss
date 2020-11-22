@@ -31,3 +31,18 @@
   font-weight: 600;
   font-size: 32px;
 }
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    margin: 0 8px;
+    fill: $color-primary;
+    cursor: pointer;
+  }
+}
