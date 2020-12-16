@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders hero-area 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="page"
+    >
+      <div
+        class="top"
+      >
+        <div
+          class="background"
+        >
+          <img
+            alt=""
+            class="backgroundImage"
+            src="movies.png"
+          />
+          <div
+            class="shadow"
+          />
+        </div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="header"
+          >
+            <div
+              class="logo"
+            >
+              <strong>
+                netflix
+              </strong>
+              <span>
+                roulette
+              </span>
+            </div>
+            <button
+              class="addButton btn btn-light btn-lg"
+              type="button"
+            >
+              + Add movie
+            </button>
+          </div>
+          <div
+            class="content"
+          >
+            <div
+              class="form"
+            >
+              <div
+                class="title"
+              >
+                Find your movie
+              </div>
+              <div
+                class="search"
+              >
+                <input
+                  class="form-control"
+                  placeholder="What do you want to watch"
+                  value=""
+                />
+                <button
+                  class="searchButton btn btn-primary btn-lg"
+                  type="button"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="filter"
+      >
+        <div
+          class="genres"
+        >
+          <div
+            class="genre active"
+          >
+            All
+          </div>
+          <div
+            class="genre"
+          >
+            Documentary
+          </div>
+          <div
+            class="genre"
+          >
+            Comedy
+          </div>
+          <div
+            class="genre"
+          >
+            Horror
+          </div>
+          <div
+            class="genre"
+          >
+            Crime
+          </div>
+          <div
+            class="genre"
+          >
+            Animation
+          </div>
+          <div
+            class="genre"
+          >
+            Adventure
+          </div>
+          <div
+            class="genre"
+          >
+            Family
+          </div>
+        </div>
+        <div
+          class="sort"
+        >
+          <div>
+            Sort by
+          </div>
+          <div
+            class="dropdown dropdown"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="true"
+              class="dropdownTitle dropdown-toggle btn btn-primary"
+              type="button"
+            >
+              Release date
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="placeholder"
+        >
+          <div
+            class="text"
+          >
+            Didn't found any results, try to apply different filters
+          </div>
+        </div>
+      </div>
+      <div
+        class="navigation"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <svg
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="footer"
+  >
+    <div
+      class="logo"
+    >
+      <strong>
+        netflix
+      </strong>
+      <span>
+        roulette
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
