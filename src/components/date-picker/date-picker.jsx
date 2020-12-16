@@ -19,8 +19,7 @@ function DatePicker(props) {
       selected={date}
       onChange={onChange}
       onChangeRaw={event => event.preventDefault()}
-      {...omit(other, ['date', 'onChange'])}
-    />
+      {...omit(other, ['date', 'onChange'])}    />
     <Calendar3 className={styles.icon} />
     </div>
   );

@@ -15,11 +15,7 @@ import { GENRES } from 'constants/movie-filters';
 
 import styles from './add-movie-modal.module.scss';
 
-const FIELD_REQUIRED_ERROR = 'Field is required';
-
- // task 5 was made fanctional
 function AddMovieModal(props) {
-   // task 5
   const initialData = useRef({
     title: '',
     release_date: undefined,
@@ -29,11 +25,9 @@ function AddMovieModal(props) {
     runtime: '',
   });
 
-  const { onSubmit, onClose } = props;
+  const { errors, onSubmit, onClose } = props;
 
   const [data, setData] = useState(initialData.current);
-  const [errors, setErrors] = useState({});
-
   useEffect(() => {
     if (props.movie) {
       const requiredFields = ['title', 'release_date', 'poster_path', 'genres', 'overview', 'runtime']
@@ -51,39 +45,8 @@ function AddMovieModal(props) {
     event.stopPropagation();
   }
 
-  const validateMovie = (movie) => {
-    const errors = {};
-
-    if (!movie.title) {
-      errors.title = FIELD_REQUIRED_ERROR;
-    };
-
-    if (!movie.release_date) {
-      errors.release_date = FIELD_REQUIRED_ERROR;
-    }
-
-    if (!movie.poster_path) {
-      errors.poster_path = FIELD_REQUIRED_ERROR;
-    }
-
-    if (!movie.genres.length) {
-      errors.genres = FIELD_REQUIRED_ERROR;
-    }
-
-    if (!movie.overview) {
-      errors.overview = FIELD_REQUIRED_ERROR;
-    }
-
-    if (!movie.runtime) {
-      errors.runtime = FIELD_REQUIRED_ERROR;
-    }
-
-    return errors;
-  }
-
   const onReset = () => {
     setData(initialData.current);
-    setErrors({});
   }
 
   const onSelectGenre = (value) => {
@@ -120,12 +83,6 @@ function AddMovieModal(props) {
   }
 
   const onSubmitClick = () => {
-    const errors = validateMovie(data);
-
-    if (Object.keys(errors).length) {
-      return setErrors(errors);
-    }
-
     onSubmit(data);
   }
 
@@ -159,7 +116,7 @@ function AddMovieModal(props) {
             value={data.title}
             onChange={(event) => onChange(event.target.value, event.target.id)}
           />
-          {errors.title && <div className={styles.error}>{errors.title}</div>}
+          {errors.some(item => item.includes('title')) && <div className={styles.error}>{errors.find(item => item.includes('title'))}</div>}
 
           <div className={styles.label}>Release date</div>
           <DatePicker
@@ -168,7 +125,7 @@ function AddMovieModal(props) {
             dateFormat={'yyyy-MM-dd'}
             onChange={(date) => onChange(date, 'release_date')}
           />
-          {errors.release_date && <div className={styles.error}>{errors.release_date}</div>}
+          {errors.some(item => item.includes('release_date')) && <div className={styles.error}>{errors.find(item => item.includes('release_date'))}</div>}
 
           <div className={styles.label}>Movie url</div>
           <FormControl
@@ -178,7 +135,7 @@ function AddMovieModal(props) {
             value={data.poster_path}
             onChange={(event) => onChange(event.target.value, event.target.id)}
           />
-          {errors.poster_path && <div className={styles.error}>{errors.poster_path}</div>}
+          {errors.some(item => item.includes('poster_path')) && <div className={styles.error}>{errors.find(item => item.includes('poster_path'))}</div>}
 
           <div className={styles.label}>Genre</div>
           <Dropdown className={styles.dropdown}>
@@ -203,7 +160,7 @@ function AddMovieModal(props) {
               }
             </Dropdown.Menu>
           </Dropdown>
-          {errors.genres && <div className={styles.error}>{errors.genres}</div>}
+          {errors.some(item => item.includes('genres')) && <div className={styles.error}>{errors.find(item => item.includes('genres'))}</div>}
 
           <div className={styles.label}>Overview</div>
           <FormControl
@@ -213,7 +170,7 @@ function AddMovieModal(props) {
             value={data.overview}
             onChange={(event) => onChange(event.target.value, event.target.id)}
           />
-          {errors.overview && <div className={styles.error}>{errors.overview}</div>}
+          {errors.some(item => item.includes('overview')) && <div className={styles.error}>{errors.find(item => item.includes('overview'))}</div>}
 
           <div className={styles.label}>Runtime</div>
           <FormControl
@@ -223,7 +180,7 @@ function AddMovieModal(props) {
             value={data.runtime}
             onChange={(event) => onChange(event.target.value, event.target.id)}
           />
-          {errors.runtime && <div className={styles.error}>{errors.runtime}</div>}
+          {errors.some(item => item.includes('runtime')) && <div className={styles.error}>{errors.find(item => item.includes('runtime'))}</div>}
         </div>
 
         <div className={styles.actions}>
@@ -244,12 +201,14 @@ AddMovieModal.propTypes = {
     overview: PropTypes.string,
     runtime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }),
+  errors: PropTypes.arrayOf(PropTypes.string),
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
 AddMovieModal.defaultProps = {
   movie: undefined,
+  errors: [],
 };
 
 export default AddMovieModal;

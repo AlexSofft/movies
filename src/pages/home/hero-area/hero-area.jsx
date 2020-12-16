@@ -14,26 +14,24 @@ import AddMovieModal from 'components/add-movie-modal';
 import * as movieActions from 'resources/movies/movies.actions';
 import * as moviesSelectors from 'resources/movies/movies.selectors';
 import { DEFAULT_DATE_FORMAT } from 'constants/date-formats';
-import { formatSearchText } from 'helpers/regexp';
+import * as moviesActions from 'resources/movies/movies.actions';
 import useUpdateEffect from 'hooks/useUpdateEffect';
 
 import backgroundImage from 'img/movies.png';
 
 import styles from './hero-area.module.scss';
 
-const MAX = 999999;
-const MIN = 100000;
-
 function HeroArea(props) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { movie_list } = useSelector(moviesSelectors.getMovies);
+
+  const { sortBy, sortOrder, filter } = useSelector(moviesSelectors.getMovies);
   const { movie } = props;
 
   const [searchString, setSearchString] = useState('');
   const [isAddMovieModalOpened, setIsAddMovieModalOpened] = useState(false);
+  const [errors, setErrors] = useState([]);
 
-   // task 5 custom hook
   useUpdateEffect(() => {
     setSearchString('');
   }, [movie]);
@@ -44,33 +42,38 @@ function HeroArea(props) {
 
   const onCloseAddMovieModal = () => {
     setIsAddMovieModalOpened(false);
+    setErrors([]);
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const movie = {
       ...data,
-      id: `${Math.random() * (MAX - MIN) + MIN}`,
+      runtime: +data.runtime,
       release_date: moment(data.release_date).format(DEFAULT_DATE_FORMAT),
     };
 
-    dispatch(movieActions.addMovie(movie));
-    setIsAddMovieModalOpened(false);
+    try {
+      dispatch(await movieActions.addMovie(movie));
+      onCloseAddMovieModal();
+    } catch (e) {
+      setErrors(e.data.messages);
+    }
   }
 
   const onDeselectMovie = () => {
     history.push('/');
   }
 
-  const onSearchClick = () => {
-    const searchRegExp = new RegExp(formatSearchText(searchString) , 'i');
-
-    const result = movie_list.find(movie => {
-      return searchRegExp.test(movie.title) || searchRegExp.test(movie.overview) ||  searchRegExp.test(movie.tagline);
-    });
-
-    if (result) {
-      history.push(`${result.id}`);
-    }
+  const onSearchClick = async () => {
+    const options = {
+      offset: 0,
+      searchBy: 'title',
+      search: searchString,
+      sortBy,
+      sortOrder,
+      filter,
+    };
+    dispatch(await moviesActions.getMovieList(options));
   }
 
   const renderForm = () => {
@@ -153,7 +156,7 @@ function HeroArea(props) {
       </div>
     </div>
 
-    {isAddMovieModalOpened && <AddMovieModal onSubmit={onSubmit} onClose={onCloseAddMovieModal} />}
+    {isAddMovieModalOpened && <AddMovieModal errors={errors} onSubmit={onSubmit} onClose={onCloseAddMovieModal} />}
     </>
   );
 }

@@ -1,42 +1,71 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 import Filters from './filters';
 import MovieItem from './movie-item';
 
 import * as moviesSelectors from 'resources/movies/movies.selectors';
+import * as moviesActions from 'resources/movies/movies.actions';
 
 import { GENRES, SORT_OPTIONS } from 'constants/movie-filters';
 
 import styles from './movie-list.module.scss';
 
 function MovieList() {  
-  const { movie_list } = useSelector(moviesSelectors.getMovies);
-  const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
-  const [genre, setGenre] = useState(GENRES[0]);
+  const dispatch = useDispatch();
 
-  const sortMovies = (a, b) => {
-    return a[sortBy.key] > b[sortBy.key] ? 1 : -1;
+  const { data, totalAmount, offset, limit, sortBy, filter, searchBy, search } = useSelector(moviesSelectors.getMovies);
+  const [sort, setSort] = useState(sortBy);
+  const [genre, setGenre] = useState(filter);
+
+  const loadMovieList = async (offsetParam) => {
+    const options = {
+      limit,
+      offset: offsetParam !== undefined ? offsetParam : offset,
+      sortBy: sort.key,
+      sortOrder: 'desc',
+      filter: genre.key !== GENRES[0].key ? genre.key : '',
+      searchBy,
+      search,
+    };
+    dispatch(await moviesActions.getMovieList(options));
   }
 
-  const filterMovies = (movie) => {
-    if (genre.key === 'all') {
-      return true;
-    };
-    return movie.genres.includes(genre.key);
+  useEffect(() => {
+    loadMovieList();
+  }, []);
+
+  useEffect(() => {
+    loadMovieList(0);
+  }, [sort, genre])
+
+  const onNextPage = async () => {
+    if (offset >= totalAmount - limit) {
+      return;
+    }
+
+    dispatch(await moviesActions.getMovieList({ offset: offset + limit, limit }));
+  }
+
+  const onPreviousPage = async () => {
+    if (offset === 0) {
+      return;
+    }
+
+    dispatch(await moviesActions.getMovieList({ offset: offset -  limit, limit }));
   }
 
   const renderContent = () => {
-    const movies = movie_list.slice().filter(filterMovies).sort(sortMovies);
-
-    if (movies.length) {
+    if (data.length) {
       return (
         <>
           <div className={styles.count}>
-            {movie_list.length} movie{movie_list.length > 1 && 's'} found
+            {totalAmount} movie{totalAmount > 1 && 's'} found
           </div>
           <div className={styles.list}>
-            { movies.map(item => <MovieItem key={item.id} movie={item} />) }
+            { data.map(item => <MovieItem key={item.id} movie={item} />) }
           </div>
         </>
       );
@@ -57,12 +86,16 @@ function MovieList() {
         filterOptions={GENRES}
         sortOptions={SORT_OPTIONS}
         filter={genre}
-        sortBy={sortBy}
+        sortBy={sort}
         onSelectFilter={setGenre}
-        onSelectSort={setSortBy}
+        onSelectSort={setSort}
       />
       <div className={styles.content}>
         { renderContent() }
+      </div>
+      <div className={styles.navigation}>
+        <ChevronLeft onClick={onPreviousPage} />
+        <ChevronRight onClick={onNextPage} />
       </div>
     </div>
   )

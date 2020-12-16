@@ -24,6 +24,7 @@ function MovieItem(props) {
   const [showErrorComponent, setShowErrorComponent] = useState(false);
   const [isEditMovieModalOpened, setIsEditMovieModalOpened] = useState(false);
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const onCloseModal = () => {
     setIsEditMovieModalOpened(false);
@@ -41,18 +42,29 @@ function MovieItem(props) {
     setIsDeleteModalOpened(true);
   }
 
-  const onDelete = () => {
-    dispatch(movieActions.deleteMovie(movie.id));
-    onCloseConfirmModal();
+  const onDelete = async () => {
+    try {
+      dispatch(await movieActions.deleteMovie(movie.id));
+      onCloseConfirmModal();
+    } catch (error) {
+      
+    }
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const movieToUpdate = {
       ...data,
+      id: movie.id,
       release_date: moment(data.release_date).format(DEFAULT_DATE_FORMAT),
     }
-    dispatch(movieActions.editMovie(movie.id, movieToUpdate));
-    onCloseModal();
+
+    try {
+      dispatch(await movieActions.editMovie(movieToUpdate));
+      onCloseModal();
+      setErrors([]);
+    } catch (e) {
+      setErrors(e.data.messages)
+    }
   }
 
   const onSelectMovie = () => {
@@ -115,7 +127,7 @@ function MovieItem(props) {
       </div>
 
       {showErrorComponent && renderErrorComponent()}
-      {isEditMovieModalOpened && <MovieModal movie={movie} onSubmit={onSubmit} onClose={onCloseModal} />}
+      {isEditMovieModalOpened && <MovieModal movie={movie} errors={errors} onSubmit={onSubmit} onClose={onCloseModal} />}
       {isDeleteModalOpened && (
         <ConfirmModal
           title="Delete movie"
